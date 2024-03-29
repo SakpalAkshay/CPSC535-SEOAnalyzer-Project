@@ -1,7 +1,7 @@
 import requests
 import bs4
-from utility import clean_text
-from stopwords import custom_stopwords  # Import custom stop words
+from utility import clean_text, custom_stopwords
+
 
 
 
