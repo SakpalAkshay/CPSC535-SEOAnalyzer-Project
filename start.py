@@ -1,16 +1,11 @@
 import streamlit as st
-import findWordCount
-import DataScraper
 import pandas as pd
-
 import matplotlib.pyplot as plt
-import seaborn as sns
-st.title("SEO Optimize Guru")
-
-import streamlit as st
 from utility import validateURL, checkSelection, makeWorldCloud, makeBarPlot
 from DataScraper import getWepageData
 from findWordCount import getProcessTimeAndWordCount
+
+st.title("SEO Optimize Guru")
 
 if 'new_df' not in st.session_state:
     st.session_state.new_df = None
