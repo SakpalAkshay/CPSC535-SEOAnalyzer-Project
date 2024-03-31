@@ -1,11 +1,16 @@
 import streamlit as st
+import findWordCount
+import DataScraper
 import pandas as pd
+
 import matplotlib.pyplot as plt
-from utility import validateURL, checkSelection, makeWorldCloud, makeBarPlot
+import seaborn as sns
+st.title("SEO Optimize Guru")
+
+import streamlit as st
+from utility import validateURL, checkSelection, makeWorldCloud, makeBarPlot, keyWordsDensityFind
 from DataScraper import getWepageData
 from findWordCount import getProcessTimeAndWordCount
-
-st.title("SEO Optimize Guru")
 
 if 'new_df' not in st.session_state:
     st.session_state.new_df = None
@@ -17,6 +22,9 @@ if 'process_time' not in st.session_state:
     st.session_state.process_time = None
 if 'is_submitted' not in st.session_state:
     st.session_state.is_submitted = False
+
+if 'len_filtered_words' not in st.session_state:
+    st.session_state.len_filtered_words = None
 
 with st.form("my_form"):
     st.subheader("Start by entering your URL")
@@ -40,7 +48,7 @@ with st.form("my_form"):
                 st.error("Please Select an Appropriate Algorithm")
             else:
                 
-                scrapped_data = getWepageData(st.session_state.name)
+                scrapped_data, st.session_state.len_filtered_words  = getWepageData(st.session_state.name)
                 if scrapped_data is not None:
                     wordCount, process_time = getProcessTimeAndWordCount(scrapped_data, selected_options)
                     sortedWordCount = dict(reversed(sorted(wordCount.items(), key=lambda item: item[1])))
@@ -63,15 +71,18 @@ with st.form("my_form"):
 if st.button("Show Analysis"):
     # lower max_font_size, change the maximum number of word and lighten the background:
     if st.session_state.is_submitted:
+        st.subheader("Word Cloud")
         makeWorldCloud(st.session_state.new_df)
         st.pyplot(plt)
-        
+        st.divider()
     
     #bar graph for top ten 10 words in Website
+        st.subheader("Top Ten Words in Website")
         makeBarPlot(st.session_state.top_10) # Adjust layout to prevent overlap of labels
         st.pyplot(plt)
-        
+        st.divider()
         #bar plot for analysis
+        st.subheader("Algorithm Efficiency Graph")
         keys = list(st.session_state.process_time.keys())
         values = list(st.session_state.process_time.values())
 
@@ -89,6 +100,18 @@ if st.button("Show Analysis"):
 
         # Display the plot in Streamlit
         st.pyplot(fig)
+        st.divider()
+        #Displaying Keyword Density
+        st.subheader("Keyword Density for top 10 Words (Accepted Range =  1% to 3%)")
+        result_df = keyWordsDensityFind(st.session_state.top_10,st.session_state.len_filtered_words)
+        st.dataframe(result_df, hide_index=True, use_container_width=True)
+        
+        
     else:
         st.error("Fill the above form first to show Analysis")
     
+
+
+
+
+
