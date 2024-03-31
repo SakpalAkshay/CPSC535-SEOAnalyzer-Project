@@ -2,9 +2,6 @@ import requests
 import bs4
 from utility import clean_text, custom_stopwords
 
-
-
-
 def getWepageData(url):
     
     
@@ -29,6 +26,7 @@ def getWepageData(url):
     except Exception as e:
         print("Error Encountered", e)
         return None
-    return filtered_text        
+    return filtered_text, len(filtered_words)        
 
+      
 
