@@ -107,24 +107,19 @@ if st.button("Show Analysis"):
         st.pyplot(fig)
         st.divider()
         #Displaying Keyword Density
-        st.subheader("Keyword Density (Accepted Range =  1% to 3%)")
+        st.subheader("Keyword Density (Good Range =  1% to 3%)")
         result_df = keyWordsDensityFind(st.session_state.more_df,st.session_state.len_filtered_words)
         st.dataframe(result_df, hide_index=True, use_container_width=True)
-
-        
-    else:
-        st.error("Fill the above form first to show Analysis")
-    
-
-if st.button("Show More SEO Analytics"):
-    if st.session_state.is_submitted:
         results = get_synonyms_antonyms_for_df(st.session_state.top_10)
         st.subheader("Synonyms and Antonyms for Top 10 Keywords")
         st.dataframe(results, hide_index=True, use_container_width=True)
         st.divider()
         
     else:
-        st.error("Problem with Previous Analysis")
+        st.error("Fill the above form first to show Analysis")
+    
+
+
 
 
 
