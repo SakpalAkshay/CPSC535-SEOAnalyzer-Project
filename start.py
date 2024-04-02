@@ -1,16 +1,15 @@
 import streamlit as st
-import findWordCount
-import DataScraper
 import pandas as pd
-
 import matplotlib.pyplot as plt
 import seaborn as sns
+st.set_page_config()
 st.title("SEO Optimize Guru")
 
 import streamlit as st
 from utility import validateURL, checkSelection, makeWorldCloud, makeBarPlot, keyWordsDensityFind
 from DataScraper import getWepageData
 from findWordCount import getProcessTimeAndWordCount
+from calculateSynAny import get_synonyms_antonyms_for_df, get_synonyms_antonyms 
 
 if 'new_df' not in st.session_state:
     st.session_state.new_df = None
@@ -25,6 +24,11 @@ if 'is_submitted' not in st.session_state:
 
 if 'len_filtered_words' not in st.session_state:
     st.session_state.len_filtered_words = None
+
+if 'more_df' not in st.session_state:
+    st.session_state.more_df = None
+    
+
 
 with st.form("my_form"):
     st.subheader("Start by entering your URL")
@@ -59,6 +63,7 @@ with st.form("my_form"):
                     st.session_state.new_df = sortedWordCount
                     st.session_state.process_time = process_time
                     st.session_state.top_10 = df.head(10)
+                    st.session_state.more_df = df
                     st.session_state.is_submitted = True
                 else:
                     st.error("Problem with URL, not able to Parse Data")
@@ -102,16 +107,24 @@ if st.button("Show Analysis"):
         st.pyplot(fig)
         st.divider()
         #Displaying Keyword Density
-        st.subheader("Keyword Density for top 10 Words (Accepted Range =  1% to 3%)")
-        result_df = keyWordsDensityFind(st.session_state.top_10,st.session_state.len_filtered_words)
+        st.subheader("Keyword Density (Accepted Range =  1% to 3%)")
+        result_df = keyWordsDensityFind(st.session_state.more_df,st.session_state.len_filtered_words)
         st.dataframe(result_df, hide_index=True, use_container_width=True)
-        
+
         
     else:
         st.error("Fill the above form first to show Analysis")
     
 
-
+if st.button("Show More SEO Analytics"):
+    if st.session_state.is_submitted:
+        results = get_synonyms_antonyms_for_df(st.session_state.top_10)
+        st.subheader("Synonyms and Antonyms for Top 10 Keywords")
+        st.dataframe(results, hide_index=True, use_container_width=True)
+        st.divider()
+        
+    else:
+        st.error("Problem with Previous Analysis")
 
 
 
