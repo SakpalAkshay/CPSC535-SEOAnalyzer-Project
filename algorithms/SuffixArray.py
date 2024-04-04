@@ -50,9 +50,3 @@ def count_pattern_occurrences(text, pattern):
         return 0
     else:
         return last_occurrence - first_occurrence + 1
-
-# Sample text and pattern
-# text = "this is a sample text with multiple sample words and another sample. sample sample sample sample sample sample sample"
-# pattern = "sample"
-# occurrence_count = count_pattern_occurrences(text, pattern)
-# print("Count of occurrences of the pattern:", occurrence_count)
