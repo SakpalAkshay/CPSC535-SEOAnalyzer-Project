@@ -30,13 +30,3 @@ def kmp_search(text, pattern):
     return len(occurrences)
 
 
-# Get user input
-# text = input("Enter the text: ")
-# pattern = input("Enter the pattern: ")
-
-# # Find and display occurrences
-# occurrences = kmp_search(text, pattern)
-# if occurrences:
-#     print(f"Pattern found at indices: {occurrences}")
-# else:
-#     print("Pattern not found in the text.")
