@@ -2,7 +2,7 @@ import requests
 import bs4
 from utility import clean_text, custom_stopwords
 
-def getWepageData(url):
+def getWebPageData(url):
     
     
     try:
