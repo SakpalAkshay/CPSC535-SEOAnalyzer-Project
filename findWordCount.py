@@ -23,7 +23,7 @@ def getProcessTimeAndWordCount(scrapped_data, algorithmselected):
 
         end = time.process_time()
         process_time["NaiveString"] = (end - start)
-        print("time to run NaiveStringMatching algorithm", (end - start) , "secs")
+        print("Time to run Naive String Matching algorithm", (end - start) , "secs")
 
 
     if "KMP Algorithm" in algorithmselected:
@@ -39,7 +39,7 @@ def getProcessTimeAndWordCount(scrapped_data, algorithmselected):
                 wordCount[word] = count
         end = time.process_time()
         process_time["KMP"] = (end - start) 
-        print("time to run KMP algorithm", (end - start),  "secs")
+        print("Time to run KMP algorithm", (end - start),  "secs")
         
 
     if "Rabin Karp" in algorithmselected:
