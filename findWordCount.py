@@ -58,7 +58,7 @@ def getProcessTimeAndWordCount(scrapped_data, algorithmselected):
 
         end = time.process_time()
         process_time["RabinKarb"] = (end - start)
-        print("time to run RabinKarb algorithm", (end - start), "secs")
+        print("Time to run Rabin Karp algorithm", (end - start), "secs")
 
     if "Suffix Array" in algorithmselected:
         start = time.process_time()
@@ -75,7 +75,7 @@ def getProcessTimeAndWordCount(scrapped_data, algorithmselected):
 
         end = time.process_time()
         process_time["SuffixArray"] = (end - start)
-        print("time to run SuffixArray algorithm", (end - start), "secs")
+        print("Time to run Suffix Array algorithm", (end - start), "secs")
 
     if "Suffix Tree" in algorithmselected:
         start = time.process_time()
@@ -92,6 +92,6 @@ def getProcessTimeAndWordCount(scrapped_data, algorithmselected):
 
         end = time.process_time()
         process_time["SuffixTree"] = (end - start)
-        print("time to run SuffixTree algorithm", (end - start), "secs")
+        print("Time to run Suffix Tree algorithm", (end - start), "secs")
 
     return wordCount, process_time
