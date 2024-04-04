@@ -10,14 +10,3 @@ def naive_string_matching(text, pattern):
 
     return len(occurrences)
 
-
-# Get user input
-# text = input("Enter the text: ")
-# pattern = input("Enter the pattern: ")
-
-# # Find and display occurrences
-# occurrences = naive_string_matching(text, pattern)
-# if occurrences:
-#     print(f"Pattern found at indices: {occurrences}")
-# else:
-#     print("Pattern not found in the text.")
