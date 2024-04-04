@@ -50,11 +50,3 @@ class RabinKarp:
             print("Pattern not found in the text.")
 
         return count
-
-
-# if __name__ == "__main__":
-#     text = input("Enter the text: ")
-#     pattern = input("Enter the pattern: ")
-#     rk_search = RabinKarp(text, pattern)
-
-#     print(rk_search.search_pattern())
