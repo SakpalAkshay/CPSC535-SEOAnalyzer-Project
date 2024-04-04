@@ -1,15 +1,13 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+from utility import validateURL, checkSelection, makeWorldCloud, makeBarPlot, keyWordsDensityFind
+from DataScraper import getWebPageData
+from findWordCount import getProcessTimeAndWordCount
+from calculateSynAny import get_synonyms_antonyms_for_df
+
 st.set_page_config()
 st.title("SEO Optimize Guru")
-
-import streamlit as st
-from utility import validateURL, checkSelection, makeWorldCloud, makeBarPlot, keyWordsDensityFind
-from DataScraper import getWepageData
-from findWordCount import getProcessTimeAndWordCount
-from calculateSynAny import get_synonyms_antonyms_for_df, get_synonyms_antonyms 
 
 if 'new_df' not in st.session_state:
     st.session_state.new_df = None
@@ -52,7 +50,7 @@ with st.form("my_form"):
                 st.error("Please Select an Appropriate Algorithm")
             else:
                 
-                scrapped_data, st.session_state.len_filtered_words  = getWepageData(st.session_state.name)
+                scrapped_data, st.session_state.len_filtered_words  = getWebPageData(st.session_state.name)
                 if scrapped_data is not None:
                     wordCount, process_time = getProcessTimeAndWordCount(scrapped_data, selected_options)
                     sortedWordCount = dict(reversed(sorted(wordCount.items(), key=lambda item: item[1])))
