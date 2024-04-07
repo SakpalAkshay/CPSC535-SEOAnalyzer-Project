@@ -12,7 +12,7 @@ Uncomment code till line 14 in to download wordnet in **calculateSynAny.py**
 
 Step 1 - Install the libraries - **pip install -r requirements.txt**
 
-Step 2 - Run the Project - **streamlit run start.py**
+Step 2 - Run the Project - **streamlit run Home.py**
 
 
 
