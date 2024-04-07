@@ -66,7 +66,7 @@ with st.form("my_form"):
                 else:
                     st.error("Problem with URL, not able to Parse Data")
         except Exception as e:
-            st.text("Error occurred:", e)
+            st.error("Please check the URL again.")
 
 
 
